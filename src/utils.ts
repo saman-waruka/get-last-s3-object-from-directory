@@ -8,6 +8,7 @@ import {
   DeleteObjectCommand,
   CopyObjectCommand,
   GetObjectAclCommand,
+  GetBucketAclCommand,
 } from '@aws-sdk/client-s3';
 
 dotenv.config({
@@ -132,6 +133,11 @@ export const copyS3Object = async (sourceKey: string, newKey: string) => {
 };
 
 export const renameS3Object = async (sourceKey: string, newKey: string) => {
+  const hasDeletePermission = await checkHasDeletePermission(sourceKey);
+  if (!hasDeletePermission) {
+    throw Error("You don't have delete permission.");
+  }
+
   try {
     const response = await copyS3Object(sourceKey, newKey);
     console.log(response);
@@ -148,5 +154,18 @@ export const renameS3Object = async (sourceKey: string, newKey: string) => {
     console.error(err);
     // TODO: handle when cannot delete (may be email/slack message to admin )
     throw err;
+  }
+};
+
+export const getBucketAcl = async () => {
+  const command = new GetBucketAclCommand({
+    Bucket: bucketName,
+  });
+
+  try {
+    const response = await client.send(command);
+    console.log(response);
+  } catch (err) {
+    console.error(err);
   }
 };

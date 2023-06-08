@@ -6,6 +6,7 @@ import {
   checkHasDeletePermission,
   deleteS3Object,
   renameS3Object,
+  getBucketAcl,
 } from './utils';
 
 dotenv.config({
@@ -29,10 +30,10 @@ dotenv.config({
   //   console.log('copyResponse ', copyResponse);
   // }
 
-  await renameS3Object(
-    '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual99.json',
-    '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json',
-  );
+  // await renameS3Object(
+  //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json',
+  //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual99.json',
+  // );
 
   const lastS3Object2 = await getS3LastObjectInDirectory(pathToDirectory);
   console.log('lastS3Object 2 ', lastS3Object2);
@@ -44,4 +45,7 @@ dotenv.config({
   // const deleteS3response = await deleteS3Object(
   //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual.json',
   // );
+
+  // const getBucketAclResponse = await getBucketAcl();
+  // console.log('getBucketAclResponse', getBucketAclResponse);
 })();
