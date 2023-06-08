@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/poc-get-s3-latest-file-from-directory.ts",
+    "start": "ts-node src/get-s3-latest-file-from-directory.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -76,7 +76,7 @@ const getS3LastObjectInDirectory = async (
     // NOTE: Just for write logs
     const dataToWrite = { loopNumbers, s3ObjectArray, lastObject, contents };
     fs.writeFileSync(
-      path.join(__dirname, "../logs/poc-result.json"),
+      path.join(__dirname, "../logs/result.json"),
       JSON.stringify(dataToWrite, null, 2)
     );
     return lastObject;
