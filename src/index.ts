@@ -14,33 +14,22 @@ dotenv.config({
 });
 
 (async () => {
-  const orgId = process.env.ORG_ID;
-  const inputConnector = process.env.INPUT_ID;
-  const pathToDirectory = `${orgId}/${inputConnector}`;
-  // const lastS3Object = await getS3LastObjectInDirectory(pathToDirectory);
-  // console.log('lastS3Object', lastS3Object);
+  const pathToDirectory = process.env.S3_DIRECTORY || 'test-directory';
+  let lastS3Object = await getS3LastObjectInDirectory(pathToDirectory);
+  console.log('lastS3Object before', lastS3Object);
 
-  //  create my file with new key
-  // if (lastS3Object) {
-  //   const copyResponse = await copyS3Object(
-  //     lastS3Object?.Key || '',
-  //     '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual.json',
-  //   );
+  // getBucketAcl();
 
-  //   console.log('copyResponse ', copyResponse);
-  // }
+  // const lastS3Object2 = await getS3LastObjectInDirectory(pathToDirectory);
+  // console.log('lastS3Object 2 ', lastS3Object2);
 
-  // await renameS3Object(
-  //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json',
-  //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual99.json',
-  // );
+  const hasDeletePermission = await checkHasDeletePermission('test-directory/test.csv');
+  console.log('hasDeletePermission', hasDeletePermission);
 
-  const lastS3Object2 = await getS3LastObjectInDirectory(pathToDirectory);
-  console.log('lastS3Object 2 ', lastS3Object2);
+  await renameS3Object('test-directory/test.csv', 'test-directory/test2.csv');
 
-  // checkHasDeletePermission(
-  //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual.json',
-  // );
+  lastS3Object = await getS3LastObjectInDirectory(pathToDirectory);
+  console.log('lastS3Object after rename', lastS3Object);
 
   // const deleteS3response = await deleteS3Object(
   //   '63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual.json',

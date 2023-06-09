@@ -4,54 +4,26 @@
   ],
   "s3ObjectArray": [
     {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686038341793-2023-06-06T07:59:01.793Z/parsed_input.json",
-      "LastModified": "2023-06-06T07:59:02.000Z",
-      "ETag": "\"57f6e168e976ec0c6b24cc94b11f23d0\"",
-      "Size": 7840,
+      "Key": "test-directory/",
+      "LastModified": "2023-06-08T09:50:47.000Z",
+      "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\"",
+      "Size": 0,
       "StorageClass": "STANDARD"
     },
     {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686038679927-2023-06-06T08:04:39.927Z/parsed_input.json",
-      "LastModified": "2023-06-06T08:04:40.000Z",
-      "ETag": "\"57f6e168e976ec0c6b24cc94b11f23d0\"",
-      "Size": 7840,
-      "StorageClass": "STANDARD"
-    },
-    {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686128464308-2023-06-07T09:01:04.308Z/parsed_input.json",
-      "LastModified": "2023-06-07T09:01:05.000Z",
-      "ETag": "\"a3d4e93b46e2c3888234eefe678c9f4f\"",
-      "Size": 7784,
-      "StorageClass": "STANDARD"
-    },
-    {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686128483233-2023-06-07T09:01:23.233Z/parsed_input.json",
-      "LastModified": "2023-06-07T09:01:24.000Z",
-      "ETag": "\"a3d4e93b46e2c3888234eefe678c9f4f\"",
-      "Size": 7784,
-      "StorageClass": "STANDARD"
-    },
-    {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input.json",
-      "LastModified": "2023-06-07T09:54:01.000Z",
-      "ETag": "\"a3d4e93b46e2c3888234eefe678c9f4f\"",
-      "Size": 7784,
-      "StorageClass": "STANDARD"
-    },
-    {
-      "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json",
-      "LastModified": "2023-06-08T08:46:33.000Z",
-      "ETag": "\"a3d4e93b46e2c3888234eefe678c9f4f\"",
-      "Size": 7784,
+      "Key": "test-directory/test2.csv",
+      "LastModified": "2023-06-09T03:48:53.000Z",
+      "ETag": "\"9e284db351229c5b73a07a418ce4d824\"",
+      "Size": 7440,
       "StorageClass": "STANDARD"
     }
   ],
   "lastObject": {
-    "Key": "63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json",
-    "LastModified": "2023-06-08T08:46:33.000Z",
-    "ETag": "\"a3d4e93b46e2c3888234eefe678c9f4f\"",
-    "Size": 7784,
+    "Key": "test-directory/test2.csv",
+    "LastModified": "2023-06-09T03:48:53.000Z",
+    "ETag": "\"9e284db351229c5b73a07a418ce4d824\"",
+    "Size": 7440,
     "StorageClass": "STANDARD"
   },
-  "contents": "• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686038341793-2023-06-06T07:59:01.793Z/parsed_input.json\n• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686038679927-2023-06-06T08:04:39.927Z/parsed_input.json\n• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686128464308-2023-06-07T09:01:04.308Z/parsed_input.json\n• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686128483233-2023-06-07T09:01:23.233Z/parsed_input.json\n• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input.json\n• 63f43e261c26e1a6566d47dd/647ee73d00228d7a341eb132/1686131640507-2023-06-07T09:54:00.507Z/parsed_input_new_test_manual98.json\n"
+  "contents": "• test-directory/\n• test-directory/test2.csv\n"
 }

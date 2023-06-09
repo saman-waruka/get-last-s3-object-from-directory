@@ -11,11 +11,19 @@ import {
   GetBucketAclCommand,
 } from '@aws-sdk/client-s3';
 
+// NOTE: more info about Access control list (ACL) : https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html
+
 dotenv.config({
   path: path.join(__dirname, '../.env'),
 });
 
-console.log(' env ', process.env);
+enum PERMISSION {
+  WRITE = 'WRITE',
+  FULL_CONTROL = 'FULL_CONTROL',
+}
+
+const PERMISSION_LIST_FOR_DELETE: string[] = [PERMISSION.WRITE, PERMISSION.FULL_CONTROL];
+
 const bucketName = process.env.S3_BUCKET_NAME || '';
 
 const client = new S3Client({
@@ -84,19 +92,39 @@ export const getS3LastObjectInDirectory = async (pathDirectory: string): Promise
   }
 };
 
-export const checkHasDeletePermission = async (key: string): Promise<boolean> => {
+const getObjectAcl = async (key: string) => {
   const command = new GetObjectAclCommand({
     Bucket: bucketName,
     Key: key,
   });
 
-  // TODO: check acl has delete permission
   try {
     const response = await client.send(command);
+    console.log(' getObjectAcl response', response);
     console.log(response);
-    return true;
+    return response;
+  } catch (err: any) {
+    console.log(' getObjectAcl err ---> ', err);
+    if (err.$metadata?.httpStatusCode && err.$metadata?.httpStatusCode === 404) {
+      throw Error(`File: ${key} not exists.`);
+    }
+    throw err;
+  }
+};
+
+export const checkHasDeletePermission = async (key: string): Promise<boolean> => {
+  try {
+    const objectAcl = await getObjectAcl(key);
+    const grants = objectAcl?.Grants || [];
+    console.log(' grants ', grants);
+    for (const grant of grants) {
+      if (PERMISSION_LIST_FOR_DELETE.includes(grant.Permission || '')) {
+        return true;
+      }
+    }
+    return false;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
   return false;
 };
@@ -133,6 +161,10 @@ export const copyS3Object = async (sourceKey: string, newKey: string) => {
 };
 
 export const renameS3Object = async (sourceKey: string, newKey: string) => {
+  if (sourceKey === newKey) {
+    throw Error('You sourceKey and newKey are same.');
+  }
+
   const hasDeletePermission = await checkHasDeletePermission(sourceKey);
   if (!hasDeletePermission) {
     throw Error("You don't have delete permission.");
@@ -164,6 +196,8 @@ export const getBucketAcl = async () => {
 
   try {
     const response = await client.send(command);
+    console.log('getBucketAcl() -----> ', response);
+    console.log('grants -----> ', response.Grants);
     console.log(response);
   } catch (err) {
     console.error(err);
